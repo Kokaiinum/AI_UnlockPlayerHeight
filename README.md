@@ -1,26 +1,20 @@
-# AI_UnlockPlayerHeight  
-This plugin unlocks the players height hard lock of 75.  
+# KK_ExpandMaleMaker
+This plugin expands the options in the male character creator for Koikatsu. It allows for the height to be changed, and also gives access to the pubic hair options.
 
-It is *recommended*, that you keep players height during H at 75 (default) to avoid issues with H animations. 
-Illusion lazy-ed out and made all H animations prefer 75 as the player height, causing some of them to look weird when the player is at different heights.  
+Requires [BepInEx 5](https://github.com/BepInEx/BepInEx/releases) and [KKAPI](https://github.com/IllusionMods/IllusionModdingAPI/releases).
 
-Needs https://github.com/IllusionMods/BepisPlugins for configuration to work!
+### Installation
+Download the latest .dll from the [releases tab](https://github.com/Kokaiinum/KK_ExpandMaleMaker/releases) and place it in the BepInEx\Plugins folder.
 
-**Current Features:**  
-* Align camera position with players height  
-* Set player height according to card (seperate for Roam and H)  
-* Set player height according to custom value (seperate for Roam and H)  
-* Male height slider is now available in the charamaker  
+### Configuration
+If you have the BepInEx Configuration Manager plugin installed, you can set the settings to your liking in the F1 mods/plugins menu. If not, there will be a config file in the BepInEx\config folder.
 
-**Download:**  
-* Download the latest `AI_UnlockPlayerHeight.dll` from https://github.com/Mantas-2155X/AI_UnlockPlayerHeight/releases  
 
-**Installation:**  
-* Drop `AI_UnlockPlayerHeight.dll` in `BepInEx/plugins/`  
+## Additional Usage Notes
+* Just as with the ABMX scale options, H animations **WILL** break if you deviate the male's height too much from the default. The game is not designed with different male heights in mind (obviously, that's why the option is disabled by default).
+* **Compatibility mode**: at the suggestion of @DeathWeasel1337, by default this plugin will ignore non-default heights on male characters that have not been saved specifically with those heights while this plugin is enabled. This is to prevent issues like old scenes/cards etc suddenly experiencing male characters loading with different heights. If you don't care about this, it can be disabled in the config settings (requires viewing the advanced options).
 
-**Configuration:**  
-* Please look at the plugin settings menu and enable/modify which features you want.  
 
-**To-Do:**  
-* Make players hand raise to compensate for the girl being huge and player being tiny.  
-* Somehow make H animations fit better at different player heights.  
+## Credits and Thanks
+* A big thanks to @Mantas-2155X for creating his AI_UnlockPlayerHeight plugin, the transpilers in this plugin are based on the ones he wrote in his plugin.
+* Thanks to DeathWeasel1337/Anon11 for the forethought to suggest compatibility mode.

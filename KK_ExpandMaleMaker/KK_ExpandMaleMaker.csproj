@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -7,8 +7,8 @@
     <ProjectGuid>{94C77007-B1F1-454D-98C0-6D472B7428B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AI_UnlockPlayerHeight</RootNamespace>
-    <AssemblyName>AI_UnlockPlayerHeight</AssemblyName>
+    <RootNamespace>KK_ExpandMaleMaker</RootNamespace>
+    <AssemblyName>KK_ExpandMaleMaker</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,49 +33,42 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\BepInEx\core\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\..\..\Crap\BepInEx\core\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\AI-Syoujyo_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\Crap\Koikatu_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\AI-Syoujyo_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\..\..\..\..\Crap\Koikatu_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\BepInEx\core\BepInEx.dll</HintPath>
+      <HintPath>..\..\..\..\..\Crap\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx.Harmony, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\BepInEx\core\BepInEx.Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx.MessageCenter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\BepInEx\plugins\BepInEx.MessageCenter.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\AI-Syoujyo_Data\Managed\Cinemachine.dll</HintPath>
+      <HintPath>..\..\..\..\..\Crap\BepInEx\core\BepInEx.Harmony.dll</HintPath>
     </Reference>
     <Reference Include="ConfigurationManager, Version=14.1.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\BepInEx\plugins\ConfigurationManager.dll</HintPath>
+      <HintPath>..\..\..\..\..\Crap\BepInEx\plugins\ConfigurationManager.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.Serialization, Version=2.0.13.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\AI-Syoujyo_Data\Managed\Sirenix.Serialization.dll</HintPath>
+    <Reference Include="ExtensibleSaveFormat">
+      <HintPath>..\..\..\..\..\Crap\BepInEx\plugins\KK_BepisPlugins\ExtensibleSaveFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="KKAPI">
+      <HintPath>..\..\..\..\..\Crap\BepInEx\plugins\KKAPI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\AI-Syoujyo_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\AI-Syoujyo_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\games\AI-Syoujyo\AI-Syoujyo_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\..\..\Crap\CharaStudio_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI_UnlockPlayerHeight.cs" />
     <Compile Include="ConfigurationManagerAttributes.cs" />
+    <Compile Include="Hooks.cs" />
+    <Compile Include="KK_ExpandMaleMaker.cs" />
+    <Compile Include="MaleHeightCompatabilityController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
