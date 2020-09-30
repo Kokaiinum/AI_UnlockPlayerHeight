@@ -1,15 +1,13 @@
 ﻿using ChaCustom;
 using HarmonyLib;
 using UnityEngine;
-using System.Linq;
 using System.Collections;
 using System.Reflection.Emit;
 using System.Collections.Generic;
 
-namespace KK_ExpandMaleMaker {
-
+namespace KK_ExpandMaleMaker
+{
     internal static class Hooks {
-
         internal static bool isDark;
 
         [HarmonyPostfix]
@@ -41,94 +39,31 @@ namespace KK_ExpandMaleMaker {
             element.transform.GetChild(1).localPosition = new Vector3(132.65f, 630.0f, 0);
         }
 
-
         [HarmonyTranspiler, HarmonyPatch(typeof(ChaControl), "Initialize")]
         public static IEnumerable<CodeInstruction> ChaControl_Initialize_RemoveHeightLock(IEnumerable<CodeInstruction> instructions) {
-
-            var il = instructions.ToList();
-
-            var index = il.FindIndex(instruction => instruction.opcode == OpCodes.Ldc_R4 && (float)instruction.operand == 0.6f);
-            if (index <= 0) return il;
-            if (isDark) {
-                il[index - 9].opcode = OpCodes.Nop;
-                il[index - 8].opcode = OpCodes.Nop;
-                il[index - 7].opcode = OpCodes.Nop;
-            }
-            il[index - 6].opcode = OpCodes.Nop;
-            il[index - 5].opcode = OpCodes.Nop;
-            il[index - 4].opcode = OpCodes.Nop;
-            il[index - 3].opcode = OpCodes.Nop;
-            il[index - 2].opcode = OpCodes.Nop;
-            il[index - 1].opcode = OpCodes.Nop;
-            il[index].opcode = OpCodes.Nop;
-            il[index + 1].opcode = OpCodes.Nop;
-            if (isDark) {
-                il[index + 2].opcode = OpCodes.Nop;
-                il[index + 3].opcode = OpCodes.Nop;
-            }
-
-            return il;
+            var cm = new CodeMatcher(instructions);
+            // find branch that overrides the male height
+            cm.MatchForward(false, new CodeMatch(OpCodes.Ldc_R4, 0.6f))
+                .MatchBack(false, new CodeMatch(OpCodes.Call))
+                .MatchBack(false, new CodeMatch(c => c.Branches(out _)));
+            // turn it into an unconditional jump
+            cm.InsertAndAdvance(new CodeInstruction(OpCodes.Pop))
+                .SetOpcodeAndAdvance(OpCodes.Br);
+            return cm.Instructions();
         }
 
-        [HarmonyTranspiler, HarmonyPatch(typeof(ChaControl), "SetShapeBodyValue")]
+        [HarmonyTranspiler]
+        [HarmonyPatch(typeof(ChaControl), "SetShapeBodyValue")]
+        [HarmonyPatch(typeof(ChaControl), "UpdateShapeBodyValueFromCustomInfo")]
         public static IEnumerable<CodeInstruction> ChaControl_SetShapeBodyValue_RemoveHeightLock(IEnumerable<CodeInstruction> instructions) {
-
-            var il = instructions.ToList();
-
-            var index = il.FindIndex(instruction => instruction.opcode == OpCodes.Ldc_R4 && (float)instruction.operand == 0.6f);
-            if (index <= 0) return il;
-
-            if (isDark) {
-                il[index - 7].opcode = OpCodes.Nop;
-                il[index - 6].opcode = OpCodes.Nop;
-                il[index - 5].opcode = OpCodes.Nop;
-            }
-            il[index - 4].opcode = OpCodes.Nop;
-            il[index - 3].opcode = OpCodes.Nop;
-            il[index - 2].opcode = OpCodes.Nop;
-            il[index - 1].opcode = OpCodes.Nop;
-            il[index].opcode = OpCodes.Nop;
-            il[index + 1].opcode = OpCodes.Nop;
-            il[index + 2].opcode = OpCodes.Nop;
-            if (isDark) {
-                il[index + 3].opcode = OpCodes.Nop;
-                il[index + 4].opcode = OpCodes.Nop;
-            }
-
-            return il;
+            var cm = new CodeMatcher(instructions);
+            // find branch that overrides the male height
+            cm.MatchForward(false, new CodeMatch(OpCodes.Call, AccessTools.PropertyGetter(typeof(ChaInfo), nameof(ChaInfo.sex))))
+                .MatchForward(false, new CodeMatch(c => c.Branches(out _)));
+            // turn it into an unconditional jump
+            cm.InsertAndAdvance(new CodeInstruction(OpCodes.Pop))
+                .SetOpcodeAndAdvance(OpCodes.Br);
+            return cm.Instructions();
         }
-
-        [HarmonyTranspiler, HarmonyPatch(typeof(ChaControl), "UpdateShapeBodyValueFromCustomInfo")]
-        public static IEnumerable<CodeInstruction> ChaControl_UpdateShapeBodyValueFromCustomInfo_RemoveHeightLock(IEnumerable<CodeInstruction> instructions) {
-
-            var il = instructions.ToList();
-
-            var index = il.FindIndex(instruction => instruction.opcode == OpCodes.Ldc_R4 && (float)instruction.operand == 0.6f);
-            if (index <= 0) return il;
-
-            if (isDark) {
-                il[index - 8].opcode = OpCodes.Nop;
-                il[index - 7].opcode = OpCodes.Nop;
-                il[index - 6].opcode = OpCodes.Nop;
-            }
-            il[index - 5].opcode = OpCodes.Nop;
-            il[index - 4].opcode = OpCodes.Nop;
-            il[index - 3].opcode = OpCodes.Nop;
-            il[index - 2].opcode = OpCodes.Nop;
-            il[index - 1].opcode = OpCodes.Nop;
-            il[index].opcode = OpCodes.Nop;
-            il[index + 1].opcode = OpCodes.Nop;
-            il[index + 2].opcode = OpCodes.Nop;
-            il[index + 3].opcode = OpCodes.Nop;
-            if (isDark) {
-                il[index + 4].opcode = OpCodes.Nop;
-                il[index + 5].opcode = OpCodes.Nop;
-            }
-
-            return il;
-        }
-
     }
 }
-
-
