@@ -18,3 +18,4 @@ If you have the BepInEx Configuration Manager plugin installed, you can set the 
 ## Credits and Thanks
 * A big thanks to @Mantas-2155X for creating his AI_UnlockPlayerHeight plugin, the transpilers in this plugin are based on the ones he wrote in his plugin.
 * Thanks to DeathWeasel1337/Anon11 for the forethought to suggest compatibility mode.
+* Thanks to @ManlyMarco for his improvement of the transpilers.
