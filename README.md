@@ -1,7 +1,7 @@
 # KK_ExpandMaleMaker
 This plugin expands the options in the male character creator for Koikatsu. It allows for the height to be changed, and also gives access to the pubic hair options.
 
-Requires [BepInEx 5](https://github.com/BepInEx/BepInEx/releases) and [KKAPI](https://github.com/IllusionMods/IllusionModdingAPI/releases).
+Requires [BepInEx 5.3](https://github.com/BepInEx/BepInEx/releases) and [KKAPI](https://github.com/IllusionMods/IllusionModdingAPI/releases).
 
 ### Installation
 Download the latest .dll from the [releases tab](https://github.com/Kokaiinum/KK_ExpandMaleMaker/releases) and place it in the BepInEx\Plugins folder.
