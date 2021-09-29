@@ -4,12 +4,12 @@ using KKAPI.Chara;
 using System.Collections;
 using ExtensibleSaveFormat;
 
-namespace KK_ExpandMaleMaker {
+namespace ExpandMaleMaker {
     public class MaleHeightCompatabilityController : CharaCustomFunctionController {
 
         protected override void OnCardBeingSaved(GameMode currentGameMode) {
             if (ChaControl.sex != 0) return;
-            bool heightEnabled = KK_ExpandMaleMaker.heightEnabled.Value;
+            bool heightEnabled = ExpandMaleMaker.heightEnabled.Value;
             var data = new PluginData();
             data.data.Add("MaleHeightEnabled", heightEnabled);
             data.version = 1;
@@ -18,8 +18,8 @@ namespace KK_ExpandMaleMaker {
 
         protected override void OnReload(GameMode currentGameMode) {
             base.OnReload(currentGameMode);
-            if (KK_ExpandMaleMaker.compatabilityMode.Value || !KK_ExpandMaleMaker.heightEnabled.Value)
-                KK_ExpandMaleMaker.instance.StartCoroutine(DelayCheck());
+            if (ExpandMaleMaker.compatabilityMode.Value || !ExpandMaleMaker.heightEnabled.Value)
+                ExpandMaleMaker.instance.StartCoroutine(DelayCheck());
 
             //Attempting to apply the check on the same frame doesn't seem to work for cards loaded with DragAndDrop? So, here we are
             IEnumerator DelayCheck() {
@@ -39,15 +39,13 @@ namespace KK_ExpandMaleMaker {
                     heightEnabled = bVal;
                 }
 
-                if ((!heightEnabled) || (!KK_ExpandMaleMaker.heightEnabled.Value)) {
-                    var sib = Traverse.Create(ChaControl).Property("sibBody").GetValue<ShapeInfoBase>(); //Public in JP but private in Party, thanks Illusion!
+                if ((!heightEnabled) || (!ExpandMaleMaker.heightEnabled.Value)) {                    
                     if (isJanitor) {
                         ChaControl.chaFile.custom.body.shapeValueBody[0] = 1;
-                        sib.ChangeValue(0, 1);
-                    }
-                    else {
+                        ChaControl.sibBody.ChangeValue(0, 1);
+                    } else {
                         ChaControl.chaFile.custom.body.shapeValueBody[0] = 0.6f;
-                        sib.ChangeValue(0, 0.6f);
+                        ChaControl.sibBody.ChangeValue(0, 0.6f);
                     }
                 }
             }

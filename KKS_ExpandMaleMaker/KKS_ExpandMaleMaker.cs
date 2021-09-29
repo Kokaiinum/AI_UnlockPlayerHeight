@@ -1,3 +1,4 @@
-﻿namespace ExpandMaleMaker {
+﻿namespace ExpandMaleMaker
+{
     public partial class ExpandMaleMaker { }
 }
