@@ -1,14 +1,11 @@
-﻿using ChaCustom;
-using HarmonyLib;
+﻿using UnityEngine;
 using System.Collections;
-using UnityEngine;
 
 namespace ExpandMaleMaker {
     internal static partial class Hooks {
 
         internal static void EnableUnderhair() {
             //we have to wait a bit to set this on Sunshine for some reason
-
             ExpandMaleMaker.instance.StartCoroutine(UnderhairDelay());
 
             IEnumerator UnderhairDelay() {
@@ -18,10 +15,6 @@ namespace ExpandMaleMaker {
                 SetUnderhairOffset(element);
                 yield return null;
             }
-        }
-
-        static void SetUnderhairDisplay(GameObject element) {
-            element.SetActive(true);
         }
 
         static void SetUnderhairOffset(GameObject element) {

@@ -27,6 +27,9 @@ namespace ExpandMaleMaker {
                 EnableUnderhair();
             }
         }
+        static void SetUnderhairDisplay(GameObject element) {
+            element.SetActive(true);
+        }
 
         [HarmonyTranspiler, HarmonyPatch(typeof(ChaControl), "Initialize")]
         public static IEnumerable<CodeInstruction> ChaControl_Initialize_RemoveHeightLock(IEnumerable<CodeInstruction> instructions) {

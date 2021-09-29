@@ -1,6 +1,4 @@
-﻿using ChaCustom;
-using HarmonyLib;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ExpandMaleMaker {
     internal static partial class Hooks {
@@ -9,10 +7,6 @@ namespace ExpandMaleMaker {
             GameObject element = GameObject.Find("CustomScene/CustomRoot/FrontUIGroup/CustomUIGroup/CvsMenuTree/01_BodyTop/tglUnderhair");
             SetUnderhairDisplay(element);
             SetUnderhairOffset(element);
-        }
-
-        static void SetUnderhairDisplay(GameObject element) {
-            element.SetActive(true);
         }
 
         static void SetUnderhairOffset(GameObject element) {
