@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using KKAPI.Maker;
 using System.Collections;
 
 namespace ExpandMaleMaker {
@@ -9,11 +11,20 @@ namespace ExpandMaleMaker {
             ExpandMaleMaker.instance.StartCoroutine(UnderhairDelay());
 
             IEnumerator UnderhairDelay() {
-                yield return new WaitForEndOfFrame();
-                GameObject element = GameObject.Find("CustomScene/CustomRoot/FrontUIGroup/CustomUIGroup/CvsMenuTree/01_BodyTop/tglUnderhair");
-                SetUnderhairDisplay(element);
-                SetUnderhairOffset(element);
+                if (!MakerAPI.InsideAndLoaded) yield return new WaitForEndOfFrame();
+                ExpandMaleMaker.logger.LogMessage("Hello from EMM");               
+                GameObject bodyButton = GameObject.Find("CustomScene/CustomRoot/FrontUIGroup/CustomUIGroup/CvsMainMenu/BaseTop/tglBody");
+                Toggle toggle = bodyButton.GetComponent<Toggle>();
+                toggle.onValueChanged.AddListener(EnableUnderhairButton);  
                 yield return null;
+            }
+
+            void EnableUnderhairButton(bool clothingPanel) {
+                if (clothingPanel) {
+                    GameObject element = GameObject.Find("CustomScene/CustomRoot/FrontUIGroup/CustomUIGroup/CvsMenuTree/01_BodyTop/tglUnderhair");
+                    SetUnderhairDisplay(element);
+                    SetUnderhairOffset(element);
+                }
             }
         }
 

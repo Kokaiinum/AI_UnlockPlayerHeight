@@ -3,6 +3,7 @@ using UnityEngine;
 using KKAPI.Chara;
 using System.Reflection;
 using BepInEx.Configuration;
+using BepInEx.Logging;
 
 namespace ExpandMaleMaker {
 
@@ -12,9 +13,9 @@ namespace ExpandMaleMaker {
 
         public const string Name = "Expand Male Maker";
         public const string GUID = "kokaiinum.KKExpandMaleMaker";
-        public const string Version = "1.2.0.0";
+        public const string Version = "1.3.0.0";
 
-        internal static MonoBehaviour instance;
+        internal static MonoBehaviour instance;  
 
         internal static ConfigEntry<bool> heightEnabled;
         internal static ConfigEntry<bool> hairEnabled;
